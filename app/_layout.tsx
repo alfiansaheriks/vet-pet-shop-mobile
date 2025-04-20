@@ -1,39 +1,30 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import { Redirect, SplashScreen, Stack } from "expo-router";
+import "./global.css";
+import { StatusBar } from "react-native";
+import { useEffect, useState } from "react";
+import { Asset } from "expo-asset";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+  const [isReady, setIsReady] = useState(false);
+  
+    useEffect(() => {
+      async function prepare() {
+        await Asset.loadAsync([
+          require("@/assets/images/onboarding/3d-dogs.png"),
+        ]);
+        setIsReady(true);
+        await SplashScreen.hideAsync();
+      }
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+      prepare();
+    }, []);
 
-  if (!loaded) {
-    return null;
-  }
+    if (!isReady) return null;
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <>
+    <Redirect href="/onboarding" />
+    <Stack screenOptions={{ headerShown: false }} />
+    </>
   );
 }
