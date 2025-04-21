@@ -10,6 +10,8 @@ module.exports = {
         secondary: "#6F826A",
         tertiary: "#BBD8A3",
         quaternary: "#F0F1C5",
+        accent: "#F8EEDF",
+        hover: "#D5AA7D",
       },
       spacing: {
         base: "40px",

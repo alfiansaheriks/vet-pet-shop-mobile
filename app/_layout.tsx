@@ -23,7 +23,7 @@ export default function RootLayout() {
 
   return (
     <>
-    <Redirect href="/onboarding" />
+    <Redirect href="/(tabs)" />
     <Stack screenOptions={{ headerShown: false }} />
     </>
   );
