@@ -1,0 +1,94 @@
+import { View, Text, Image, ScrollView, FlatList } from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { icons } from "@/constants/icons";
+import AnimalType from "@/components/AnimalType";
+import { images } from "@/constants/images";
+import ProductType from "@/components/ProductType";
+
+const data = [
+  { id: 1, name: "Food", image: images.food3d },
+  // { id: 2, name: "Dog", image: images.dog2d },
+  // { id: 3, name: "Rabbit", image: images.rabbit2d },
+  { id: 4, name: "Medicine", image: images.medicine3d },
+  { id: 5, name: "Care", image: images.petcare3d },
+  // { id: 6, name: "Fish", image: images.fish2d },
+];
+
+const Index = () => {
+  const [activeType, setIsActiveType] = useState("Pet");
+
+  return (
+    <SafeAreaView className="flex-1 bg-slate-50 justify-center items-center">
+      <View className="px-base">
+        <View className="flex-row bg-transparent rounded-xl justify-between w-full">
+          <Text className="text-black font-bold"></Text>
+          <Image
+            source={icons.shoppingCart}
+            className="size-10 mt-4"
+            style={{ tintColor: "#BF9264" }}
+          />
+        </View>
+
+        <Text
+          className="text-black text-xl mt-4"
+          style={{
+            fontFamily: "Lato-Bold",
+            fontSize: 24,
+          }}
+        >
+          Products
+        </Text>
+
+        <View className="flex-col mt-10 gap-4">
+          <View className="flex-row gap-8 w-full justify-center items-center">
+            <AnimalType
+              images={images.pet3d}
+              name="Pet"
+              isActiveType={activeType === "Pet"}
+              onPress={() => setIsActiveType("Pet")}
+            />
+            <AnimalType
+              images={images.poultry3d}
+              name="Poultry"
+              isActiveType={activeType === "Poultry"}
+              onPress={() => setIsActiveType("Poultry")}
+            />
+            <AnimalType
+              images={images.aquatic3d}
+              name="Aquatic"
+              isActiveType={activeType === "Aquatic"}
+              onPress={() => setIsActiveType("Aquatic")}
+            />
+          </View>
+        </View>
+
+        <View className="flex-1 mt-10">
+            <FlatList
+              data={data}
+              keyExtractor={(item) => item.id.toString()}
+              numColumns={2}
+              className="rounded-xl"
+              columnWrapperStyle={{
+                justifyContent: "space-between",
+                marginBottom: 10,
+                gap: 10,
+              }}
+              contentContainerStyle={{ paddingHorizontal: 0, paddingBottom: 80 }}
+              renderItem={({ item }) => (
+                <ProductType
+                  images={item.image}
+                  name={item.name}
+                  isActiveType={activeType === item.name}
+                  onPress={() => setIsActiveType(item.name)}
+                />
+              )}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        </View>
+    </SafeAreaView>
+  );
+};
+
+export default Index;

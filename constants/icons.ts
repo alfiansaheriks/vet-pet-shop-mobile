@@ -11,6 +11,7 @@ import arrowDown from "@/assets/icons/arrow-down.png";
 import notification from "@/assets/icons/notification.png";
 import search from "@/assets/icons/search.png";
 import discover from "@/assets/icons/discover.png";
+import shoppingCart from "@/assets/icons/shopping-cart.png";
 
 export const icons = {
   home,
@@ -26,4 +27,5 @@ export const icons = {
   notification,
   search,
   discover,
+  shoppingCart,
 };

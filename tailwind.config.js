@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // NOTE: Update this to include the paths to all of your component files.
-  content: ["./app/**/*.{js,jsx,ts,tsx}"],
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{html,js,ts,jsx,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
@@ -14,8 +14,8 @@ module.exports = {
         hover: "#D5AA7D",
       },
       spacing: {
-        base: "40px",
-      }
+        base: "16px",
+      },
     },
   },
   plugins: [],
