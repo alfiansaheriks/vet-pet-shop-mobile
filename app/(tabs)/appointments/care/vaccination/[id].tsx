@@ -6,19 +6,20 @@ import TimePickerInput from "@/components/form/TimePickerInput";
 import { useLocalSearchParams } from "expo-router";
 import BranchPickerModal from "@/components/BranchPicker";
 import Toast from "react-native-toast-message";
+import BackButton from "@/components/BackButton";
 
 const branches = [
   {
-    id: 'BR01',
-    name: 'DrGood Jakarta Selatan',
-    address: 'Jl. Sudirman No. 5, Jakarta Selatan',
-    openHours: '09:00 - 17:00',
+    id: "BR01",
+    name: "DrGood Jakarta Selatan",
+    address: "Jl. Sudirman No. 5, Jakarta Selatan",
+    openHours: "09:00 - 17:00",
   },
   {
-    id: 'BR02',
-    name: 'Vet Good Yogyakarta',
-    address: 'Jl. Kaliurang Km 10, Sleman',
-    openHours: '08:00 - 16:00',
+    id: "BR02",
+    name: "Vet Good Yogyakarta",
+    address: "Jl. Kaliurang Km 10, Sleman",
+    openHours: "08:00 - 16:00",
   },
 ];
 
@@ -37,33 +38,40 @@ const Vaccination = () => {
   const handleSend = () => {
     console.log("Booking Data will sent:", formData);
     Toast.show({
-      type: 'success',
-      text1: 'Mantap!',
-      text2: 'Toast custom kamu sudah muncul bro 🔥',
-      position: 'top',
-      topOffset: Platform.OS === 'ios' ? 60 : 0,
-      });
+      type: "success",
+      text1: "Mantap!",
+      text2: "Toast custom kamu sudah muncul bro 🔥",
+      position: "top",
+      topOffset: Platform.OS === "ios" ? 60 : 0,
+    });
   };
   return (
-    <SafeAreaView className="flex-1 bg-slate-50 px-base w-full">
-      <Text
-        className="text-2xl text-center"
-        style={{ fontFamily: "Lato-Bold" }}
-      >
-        Vaccination Appointment
-      </Text>
-      <Text
-        className="text-base text-center mb-4"
-        style={{ fontFamily: "Lato-Regular" }}
-      >
-        Vaccinate your friend with our vaccination service
-      </Text>
-      <View className="items-center justify-center">
-      <BranchPickerModal
+    <SafeAreaView className="flex-1 bg-slate-50 w-full">
+      <View className="flex-row items-center justify-center mt-4">
+        <View className="flex-1 items-center mb-4">
+          <Text
+            className="text-2xl text-center"
+            style={{ fontFamily: "Lato-Bold" }}
+          >
+            Vaccination Appointment
+          </Text>
+          <Text
+            className="text-base text-center mb-4"
+            style={{ fontFamily: "Lato-Regular" }}
+          >
+            Vaccinate your friend with our vaccination service
+          </Text>
+        </View>
+        <View className="absolute left-0 top-1">
+          <BackButton />
+        </View>
+      </View>
+      <View className="items-center justify-center px-base">
+        <BranchPickerModal
           branches={branches}
           selected={selectedBranch}
           onSelect={(branch: any) => setSelectedBranch(branch)}
-          />
+        />
         <DatePickerInput
           label="Select Date"
           value={date}
@@ -76,7 +84,9 @@ const Vaccination = () => {
         />
 
         <TouchableOpacity
-          className={`rounded-xl p-4 mt-4 w-full ${!time || !date ? "bg-slate-300" : "bg-primary"}`}
+          className={`rounded-xl p-4 mt-4 w-full ${
+            !time || !date ? "bg-slate-300" : "bg-primary"
+          }`}
           onPress={handleSend}
         >
           <Text

@@ -8,9 +8,9 @@ const BackButton = () => {
   return (
     <TouchableOpacity
       onPress={() => router.back()}
-      className="bg-[#f6f2ed] w-14 rounded-full p-4 mb-2 border border-[#f6f2ed] shadow-sm"
+      className="rounded-full p-4 mb-2"
     >
-      <MaterialIcons name="arrow-back" size={18} color="#BF9264" />
+      <MaterialIcons name="arrow-back" size={24} color="#BF9264" />
     </TouchableOpacity>
   );
 };

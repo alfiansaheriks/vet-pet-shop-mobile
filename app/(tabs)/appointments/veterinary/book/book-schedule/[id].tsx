@@ -7,6 +7,7 @@ import TimePickerInput from "@/components/form/TimePickerInput";
 import SelectInput from "@/components/form/SelectInput";
 import TextAreaInput from "@/components/form/TextAreaInput";
 import RadioInput from "@/components/form/RadioInput";
+import BackButton from "@/components/BackButton";
 
 const Booking = () => {
   const { id } = useLocalSearchParams();
@@ -46,6 +47,10 @@ const Booking = () => {
           >
             Please input your booking details
           </Text>
+        </View>
+
+        <View className="absolute left-0">
+          <BackButton />
         </View>
 
         <DatePickerInput

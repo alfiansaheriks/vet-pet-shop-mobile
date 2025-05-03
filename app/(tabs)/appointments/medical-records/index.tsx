@@ -50,91 +50,73 @@ const petList = [
   },
 ];
 
-const activityHistoryMap: Record<
+const medicalRecordsMap: Record<
   number,
-  { id: number; title: string; date: string; notes: string; duration?: string }[]
+  {
+    id: number;
+    date: string;
+    complaint: string;
+    diagnosis: string;
+    doctor: string;
+    clinic: string;
+    notes: string;
+  }[]
 > = {
   1: [
     {
       id: 1,
-      title: "Vaccination",
-      date: "2023-09-15",
-      notes: "Rabies & DHPP vaccine given",
+      date: "2025-04-20",
+      complaint: "Loss of appetite",
+      diagnosis: "Gastrointestinal infection",
+      doctor: "Dr. Rika",
+      clinic: "PetCare Clinic",
+      notes: "Prescribed antibiotics and vitamins",
     },
     {
       id: 2,
-      title: "Grooming",
-      date: "2023-08-10",
-      notes: "Full grooming session",
-      duration: "2 hours",
+      date: "2025-03-03",
+      complaint: "Itchy skin",
+      diagnosis: "Food allergy",
+      doctor: "Dr. Andi",
+      clinic: "Healthy Paws",
+      notes: "Recommended hypoallergenic diet",
     },
   ],
   2: [
     {
       id: 1,
-      title: "Checkup",
-      date: "2023-09-01",
-      notes: "Ear infection treatment",
+      date: "2025-01-12",
+      complaint: "Vomiting",
+      diagnosis: "Mild stomach upset",
+      doctor: "Dr. Lina",
+      clinic: "Animal Health Center",
+      notes: "Given antiemetic injection",
     },
   ],
   3: [
     {
       id: 1,
-      title: "Grooming",
-      date: "2023-09-20",
-      notes: "Nail trim and fur brushing",
+      date: "2025-02-18",
+      complaint: "Limping",
+      diagnosis: "Minor paw injury",
+      doctor: "Dr. Samuel",
+      clinic: "VetCare Services",
+      notes: "Applied bandage and pain relief",
     },
   ],
 };
 
-const PetDetail = () => {
+const Index = () => {
   const router = useRouter();
   const [selectedPetId, setSelectedPetId] = useState<number>(petList[0].id);
   const [showPetModal, setShowPetModal] = useState(false);
 
   const selectedPet = petList.find((p) => p.id === selectedPetId)!;
-  const activityHistory = activityHistoryMap[selectedPetId] || [];
+  const medicalRecords = medicalRecordsMap[selectedPetId] || [];
 
   const handlePress = (route: any) => {
     router.push(route);
   };
-
-  const handleVaccinationDetail = ({...item}) => {
-    console.log(item);
-    router.push({
-      pathname: `/appointments/care/[vaccine]`,
-      params: {
-        vaccine: item.id,
-        vaccination_date: item.date,
-        vaccine_type: item.title,
-        notes: item.notes,
-        next_due_date: "2024-09-15",
-        animal_name: selectedPet.name,
-        animal_type: selectedPet.type,
-        animal_breed: selectedPet.breed,
-        animal_age: selectedPet.age,
-      },
-    })
-  }
-
-  const handleGroomingDetail = ({...item}) => {
-    console.log(item);
-    router.push({
-      pathname: `/appointments/care/[grooming]`,
-      params: {
-        grooming: item.id,
-        grooming_date: item.date,
-        grooming_type: item.title,
-        notes: item.notes,
-        duration: item.duration,
-        groomer: "Jessica - Pet Spa Center",
-        animal_name: selectedPet.name,
-        animal_type: selectedPet.type,
-        animal_breed: selectedPet.breed,
-        animal_age: selectedPet.age,
-      },
-    })
-  }
 
   return (
     <SafeAreaView className="flex-1 bg-white py-base">
@@ -234,24 +216,6 @@ const PetDetail = () => {
           >
             Age: {selectedPet.age} years
           </Text>
-          <View className="flex-row items-center mt-4 gap-4">
-            <IconButton
-              name="content-cut"
-              size={24}
-              onPress={() => {
-                handlePress(`/appointments/care/grooming/${selectedPet.id}`);
-              }}
-              label="Grooming"
-            />
-            <IconButton
-              name="vaccines"
-              size={24}
-              onPress={() => {
-                handlePress(`/appointments/care/vaccination/${selectedPet.id}`);
-              }}
-              label="Vaccination"
-            />
-          </View>
         </View>
       </View>
 
@@ -259,23 +223,47 @@ const PetDetail = () => {
       <View className="flex-1 items-center bg-white rounded-3xl shadow-sm">
         <FlatList
           className="bg-white mt-4 w-full"
-          data={activityHistory}
+          data={medicalRecords}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <TouchableOpacity
-              // conditionally navigate to the detail page
               onPress={() => {
-                if (item.title === "Vaccination") {
-                  handleVaccinationDetail(item);
-                } else {
-                  handleGroomingDetail(item);
-                }
+                console.log("Selected item:", item);
+                // Contoh navigasi:
+                // router.push({ pathname: "/medical-detail", params: item });
               }}
             >
-              <View className="p-4 rounded-lg mb-2 border-b border-gray-200">
-                <Text className="text-lg font-bold" style={{ fontFamily: "Lato-Bold"}}>{item.title}</Text>
-                <Text className="text-sm text-gray-500" style={{ fontFamily: "Lato-Bold"}}>{item.date}</Text>
-                <Text className="text-sm" style={{ fontFamily: "Lato-Bold"}}>{item.notes}</Text>
+              <View className="p-4 bg-white border-b border-gray-200 rounded-lg mb-3">
+                <Text
+                  className="text-sm text-gray-500"
+                  style={{ fontFamily: "Lato-Regular" }}
+                >
+                  {item.date}
+                </Text>
+                <Text
+                  className="text-lg font-bold mb-1"
+                  style={{ fontFamily: "Lato-Bold" }}
+                >
+                  {item.complaint}
+                </Text>
+                <Text
+                  className="text-sm mb-1"
+                  style={{ fontFamily: "Lato-Regular" }}
+                >
+                  Diagnosis: {item.diagnosis}
+                </Text>
+                <Text
+                  className="text-sm text-gray-500"
+                  style={{ fontFamily: "Lato-Regular" }}
+                >
+                  {item.doctor} – {item.clinic}
+                </Text>
+                <Text
+                  className="text-sm mt-1"
+                  style={{ fontFamily: "Lato-Regular" }}
+                >
+                  {item.notes}
+                </Text>
               </View>
             </TouchableOpacity>
           )}
@@ -289,4 +277,4 @@ const PetDetail = () => {
   );
 };
 
-export default PetDetail;
+export default Index;

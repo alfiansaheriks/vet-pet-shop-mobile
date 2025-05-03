@@ -120,7 +120,7 @@ const ProductList = () => {
             <Link href={`/(tabs)/products/detail/${item.id}`} asChild>
               <TouchableOpacity className="flex-1 items-start bg-white rounded-lg shadow-sm p-6 mb-4">
                 <View
-                  className="bg-gray-100 rounded-md mb-2"
+                  className="bg-accent rounded-md mb-2"
                   style={{
                     width: Platform.OS === "ios" ? 135 : 120,
                     height: 100,

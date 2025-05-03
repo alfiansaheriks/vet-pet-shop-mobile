@@ -23,7 +23,10 @@ const SearchBar = ({ placeholder }: Props) => {
       <TextInput
         placeholder={placeholder}
         placeholderTextColor={"#000000"}
-        className="flex-1 text-white font-semibold"
+        style={{
+          fontFamily: "Lato-Regular",
+        }}
+        className="flex-1 text-black font-semibold"
       />
     </View>
   );

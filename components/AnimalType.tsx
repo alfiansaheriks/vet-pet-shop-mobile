@@ -1,9 +1,10 @@
 import { View, Text, TouchableOpacity, Image, Platform } from "react-native";
 import React, { useEffect, useState } from "react";
 import { images } from "@/constants/images";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const AnimalType = ({
-  images,
+  icons,
   name,
   isActiveType,
   onPress,
@@ -27,14 +28,7 @@ const AnimalType = ({
         }}
         onPress={onPress}
       >
-        <Image
-          source={images}
-          className="w-12 h-12"
-          style={{
-            resizeMode: "contain",
-            tintColor: isActiveType ? "#BF9264" : "#d3d3d3",
-          }}
-        />
+        <MaterialIcons name="pets" size={40} color="#BF9264" />
       </TouchableOpacity>
 
       {/* Nama di bawah kotak */}

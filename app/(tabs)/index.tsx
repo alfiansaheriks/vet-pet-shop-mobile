@@ -18,7 +18,9 @@ const Features = ({ icon, title }: HomeFeatureProps) => {
             style={{ tintColor: "#BF9264" }}
           />
         </View>
-        <Text className="text-black font-semibold text-base px-4">{title}</Text>
+        <Text className="text-black font-semibold text-base px-4" style={{
+          fontFamily: "Lato-Regular",
+        }}>{title}</Text>
       </TouchableOpacity>
     </>
   );
@@ -46,7 +48,9 @@ const TabsIndex = () => {
                   className="size-8"
                   style={{ tintColor: "#BF9264" }}
                 />
-                <Text className="text-black font-bold">Yogyakarta,ID</Text>
+                <Text className="text-black font-bold" style={{
+                  fontFamily: "Lato-Regular",
+                }}>Yogyakarta,ID</Text>
                 <Image
                   source={icons.arrowDown}
                   className="size-8"
@@ -104,8 +108,12 @@ const TabsIndex = () => {
             </View>
 
             <View className="flex-row justify-between items-center mt-10">
-              <Text className="text-black font-bold text-2xl">Discover</Text>
-              <Text className="text-[#BF9264] font-base text-lg">See All</Text>
+              <Text className="text-black font-bold text-2xl" style={{
+                fontFamily: "Lato-Regular",
+              }}>Discover</Text>
+              <Text className="text-[#BF9264] font-base text-lg" style={{
+                fontFamily: "Lato-Regular",
+              }}>See All</Text>
             </View>
             <View className="w-full mt-5">
               <AnimalCard />

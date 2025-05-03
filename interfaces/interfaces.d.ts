@@ -9,7 +9,7 @@ type HomeFeatureProps = {
 }
 
 type AnimalTypeProps = {
-    images: any;
+    icons: string;
     name: string;
     isActiveType: boolean;
     onPress: () => void;
@@ -50,4 +50,15 @@ type TextAreaInputProps = {
     placeholder: string;
     value: string;
     onChange: (text: string) => void;
+}
+
+type InputTextProps = {
+    label: string;
+    placeholder: string;
+    type?: 'text' | 'email' | 'numeric' | 'url';
+}
+
+type PasswordInputProps = {
+    label: string;
+    placeholder: string;
 }

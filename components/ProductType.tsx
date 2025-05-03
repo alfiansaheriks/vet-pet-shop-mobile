@@ -19,6 +19,7 @@ const ProductType = ({
             shadowOpacity: 0.1,
             shadowRadius: 6,
         }}
+        onPress={onPress}
       >
         <View
           className="bg-white rounded-lg"
@@ -31,8 +32,9 @@ const ProductType = ({
         >
           <Image
             source={images}
-            className="w-28 h-28"
+            className="w-28 h-28 shadow-sm"
             style={{ resizeMode: "contain" }}
+            tintColor={"#BF9264"}
           />
         </View>
       </TouchableOpacity>

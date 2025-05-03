@@ -84,7 +84,7 @@ const Index = () => {
           data={historyAppointments}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <View className="bg-white p-4 rounded-lg border-b border-gray-200">
+            <View className="bg-white py-base px-base rounded-lg border-b border-gray-200">
               <Text
                 className="text-lg font-bold"
                 style={{ fontFamily: "Lato-Bold" }}
@@ -116,7 +116,7 @@ const Index = () => {
           )}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          style={{ width: "90%" }}
+          style={{ width: "100%" }}
           contentContainerStyle={{
             paddingBottom: 32,
           }}

@@ -5,6 +5,8 @@ import { icons } from "@/constants/icons";
 import AnimalType from "@/components/AnimalType";
 import { images } from "@/constants/images";
 import ProductType from "@/components/ProductType";
+import { MaterialIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
 
 const data = [
   { id: 1, name: "Food", image: images.food3d },
@@ -21,15 +23,6 @@ const Index = () => {
   return (
     <SafeAreaView className="flex-1 bg-slate-50 justify-center items-center">
       <View className="px-base">
-        <View className="flex-row bg-transparent rounded-xl justify-between w-full">
-          <Text className="text-black font-bold"></Text>
-          <Image
-            source={icons.shoppingCart}
-            className="size-10 mt-4"
-            style={{ tintColor: "#BF9264" }}
-          />
-        </View>
-
         <Text
           className="text-black text-xl mt-4"
           style={{
@@ -39,23 +32,27 @@ const Index = () => {
         >
           Products
         </Text>
+        <View className="absolute top-0 right-0 mr-4 mt-4">
+          <MaterialIcons name="add-shopping-cart" size={30} color="#BF9264" />
+        </View>
 
         <View className="flex-col mt-10 gap-4">
-          <View className="flex-row gap-8 w-full justify-center items-center">
+          <View className="flex-row gap-8 w-full justify-center items-center mt-4">
+            {/* TODO: Search Icons Library for animals */}
             <AnimalType
-              images={images.pet3d}
+              icons="pets"
               name="Pet"
               isActiveType={activeType === "Pet"}
               onPress={() => setIsActiveType("Pet")}
             />
             <AnimalType
-              images={images.poultry3d}
+              icons="pets"
               name="Poultry"
               isActiveType={activeType === "Poultry"}
               onPress={() => setIsActiveType("Poultry")}
             />
             <AnimalType
-              images={images.aquatic3d}
+              icons="pets"
               name="Aquatic"
               isActiveType={activeType === "Aquatic"}
               onPress={() => setIsActiveType("Aquatic")}
@@ -80,7 +77,7 @@ const Index = () => {
                   images={item.image}
                   name={item.name}
                   isActiveType={activeType === item.name}
-                  onPress={() => setIsActiveType(item.name)}
+                  onPress={() => router.push(`/products/list/[category]`)}
                 />
               )}
               showsVerticalScrollIndicator={false}

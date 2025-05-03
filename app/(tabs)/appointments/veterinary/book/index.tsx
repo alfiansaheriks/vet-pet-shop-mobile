@@ -64,7 +64,8 @@ const BookAppointment = () => {
         data={branches}
         keyExtractor={(item) => item.id.toString()}
         ListHeaderComponent={() => (
-          <View className="mb-4">
+          <>
+          <View className="items-center mb-4">
             {/* <BackButton /> */}
             <Text
               className="text-2xl font-bold"
@@ -76,6 +77,10 @@ const BookAppointment = () => {
               Find the nearest veterinary branches
             </Text>
           </View>
+          <View className="absolute left-0">
+            <BackButton />
+          </View>
+          </>
         )}
         renderItem={({ item }) => (
           <View className="bg-white p-4 rounded-lg shadow-sm mb-4">
