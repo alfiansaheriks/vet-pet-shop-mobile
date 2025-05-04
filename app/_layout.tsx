@@ -39,7 +39,7 @@ export default function RootLayout() {
   return (
     <>
       <StatusBar hidden={false} />
-      {/* <Redirect href={"/(tabs)/appointments/veterinary"} /> */}
+      {/* <Redirect href={"/onboarding"} /> */}
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="(auth)" />

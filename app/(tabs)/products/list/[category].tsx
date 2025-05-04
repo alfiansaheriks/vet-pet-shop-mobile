@@ -86,7 +86,9 @@ const data = [
 
 const ProductList = () => {
   return (
-    <SafeAreaView className="flex-1 bg-slate-50 px-base">
+    <SafeAreaView className="flex-1 bg-slate-50 px-base" style={{
+      paddingTop: Platform.OS === "android" ? 40 : 0,
+    }}>
       <View className="flex-1 px-4 gap-4">
         {/* Static Header */}
         <View className="w-full mt-4">

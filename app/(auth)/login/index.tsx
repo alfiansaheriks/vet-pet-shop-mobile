@@ -14,11 +14,11 @@ const Login = () => {
   return (
     <View className="flex-1 justify-center items-center bg-secondary px-base gap-x-2">
       <Text className="text-white text-2xl font-bold mb-2">
-        Selamat Datang di Vet Shop 🐶
+        Welcome to Vet Pet Shop
       </Text>
 
       <Text className="text-white text-center mb-10">
-        Beli makanan, aksesoris, dan perawatan hewan peliharaanmu!
+        Buy foods, medicines, and accessories for your pet.
       </Text>
 
       <Image source={images.dog3dlogin} className="size-96" />
@@ -29,7 +29,7 @@ const Login = () => {
         placeholderTextColor="#BF9264"
       />
 
-      <TouchableOpacity className="bg-primary rounded-full px-4 py-5 mb-4 w-full">
+      <TouchableOpacity onPress={() => router.push('/(tabs)')} className="bg-primary rounded-full px-4 py-5 mb-4 w-full">
         <Text className="text-white font-bold text-center">Login</Text>
       </TouchableOpacity>
 
@@ -38,7 +38,7 @@ const Login = () => {
       </TouchableOpacity>
 
       <Text className="text-xs text-white opacity-70 text-center">
-        Kami tidak akan membagikan nomor Anda ke pihak lain.
+        We care about your data privacy.
       </Text>
     </View>
   );

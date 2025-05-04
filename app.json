@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.alfiansaherik.s.vetpetshop"
     },
     "web": {
       "bundler": "metro",
@@ -44,6 +45,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "ccee6c38-72a0-46e5-8a39-383401c9b488"
+      }
     }
   }
 }

@@ -2,7 +2,7 @@ import { View, Text, ImageBackground, Image, Pressable } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import { icons } from "@/constants/icons";
-import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import { MaterialIcons, FontAwesome5, Ionicons } from "@expo/vector-icons";
 
 const TabIcon = ({ focused, icon, iconFilled }: any) => {
   if (focused) {
@@ -13,7 +13,7 @@ const TabIcon = ({ focused, icon, iconFilled }: any) => {
           size={28}
           color="#BF9264"
           // borderRadius={2}
-        // style={{ tintColor: "#ffffff" }}
+          // style={{ tintColor: "#ffffff" }}
         />
       </View>
     );
@@ -22,12 +22,12 @@ const TabIcon = ({ focused, icon, iconFilled }: any) => {
   return (
     <View className="rounded-2xl w-12 h-12 justify-center items-center mt-12 ">
       <FontAwesome5
-          name={icon}
-          size={24}
-          color="#85857e"
-          // borderRadius={2}
+        name={icon}
+        size={24}
+        color="#85857e"
+        // borderRadius={2}
         // style={{ tintColor: "#ffffff" }}
-        />
+      />
     </View>
   );
 };
@@ -61,10 +61,7 @@ const _Layout = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon
-              focused={focused}
-              icon="home"
-            />
+            <TabIcon focused={focused} icon="home" />
           ),
           tabBarButton: (props) => (
             <Pressable {...props} android_ripple={null} />
@@ -76,10 +73,7 @@ const _Layout = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon
-              focused={focused}
-              icon="shopping-cart"
-            />
+            <TabIcon focused={focused} icon="shopping-cart" />
           ),
           tabBarButton: (props) => (
             <Pressable {...props} android_ripple={null} />
@@ -92,10 +86,20 @@ const _Layout = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon
-              focused={focused}
-              icon="book-medical"
-            />
+            <TabIcon focused={focused} icon="book-medical" />
+          ),
+          tabBarButton: (props) => (
+            <Pressable {...props} android_ripple={null} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="chat"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon focused={focused} icon="rocketchat" />
           ),
           tabBarButton: (props) => (
             <Pressable {...props} android_ripple={null} />
@@ -108,10 +112,7 @@ const _Layout = () => {
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon
-              focused={focused}
-              icon="user-alt"
-            />
+            <TabIcon focused={focused} icon="user-alt" />
           ),
           tabBarButton: (props) => (
             <Pressable {...props} android_ripple={null} />
