@@ -36,7 +36,7 @@ const Booking = () => {
       <ScrollView contentContainerStyle={{  }}>
         <View className="items-center mb-6">
           <Text
-            className="text-primary"
+            className="text-black"
             style={{ fontFamily: "Lato-Bold", fontSize: 20 }}
           >
             Booking Details

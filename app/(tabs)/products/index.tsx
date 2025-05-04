@@ -1,4 +1,11 @@
-import { View, Text, Image, ScrollView, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons } from "@/constants/icons";
@@ -33,7 +40,9 @@ const Index = () => {
           Products
         </Text>
         <View className="absolute top-0 right-0 mr-4 mt-4">
-          <MaterialIcons name="add-shopping-cart" size={30} color="#BF9264" />
+          <TouchableOpacity onPress={() => router.push("/products/cart")}>
+            <MaterialIcons name="add-shopping-cart" size={30} color="#BF9264" />
+          </TouchableOpacity>
         </View>
 
         <View className="flex-col mt-10 gap-4">
@@ -61,29 +70,29 @@ const Index = () => {
         </View>
 
         <View className="flex-1 mt-10">
-            <FlatList
-              data={data}
-              keyExtractor={(item) => item.id.toString()}
-              numColumns={2}
-              className="rounded-xl"
-              columnWrapperStyle={{
-                justifyContent: "space-between",
-                marginBottom: 10,
-                gap: 10,
-              }}
-              contentContainerStyle={{ paddingHorizontal: 0, paddingBottom: 80 }}
-              renderItem={({ item }) => (
-                <ProductType
-                  images={item.image}
-                  name={item.name}
-                  isActiveType={activeType === item.name}
-                  onPress={() => router.push(`/products/list/[category]`)}
-                />
-              )}
-              showsVerticalScrollIndicator={false}
-            />
-          </View>
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id.toString()}
+            numColumns={2}
+            className="rounded-xl"
+            columnWrapperStyle={{
+              justifyContent: "space-between",
+              marginBottom: 10,
+              gap: 10,
+            }}
+            contentContainerStyle={{ paddingHorizontal: 0, paddingBottom: 80 }}
+            renderItem={({ item }) => (
+              <ProductType
+                images={item.image}
+                name={item.name}
+                isActiveType={activeType === item.name}
+                onPress={() => router.push(`/products/list/[category]`)}
+              />
+            )}
+            showsVerticalScrollIndicator={false}
+          />
         </View>
+      </View>
     </SafeAreaView>
   );
 };

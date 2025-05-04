@@ -11,7 +11,7 @@ const SearchBar = ({ placeholder }: Props) => {
     <View 
       className="flex-row items-center"
       style={{
-        paddingVertical: Platform.OS === "ios" ? 16 : 0,
+        paddingVertical: Platform.OS === "ios" ? 16 : 6,
       }}
     >
       <Image

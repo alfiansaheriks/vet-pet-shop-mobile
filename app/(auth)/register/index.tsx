@@ -19,10 +19,10 @@ const Register = () => {
   return (
     <View className="flex-1 justify-center items-center bg-secondary px-base gap-x-2">
       <Text className="text-white text-2xl font-bold mb-1">
-        Daftar Akun Baru
+        Register New Account
       </Text>
       <Text className="text-white text-center mb-5">
-        Mulai belanja kebutuhan hewan peliharaanmu sekarang juga!
+        Start your journey with us and enjoy the best pet products.
       </Text>
 
       <TextInput

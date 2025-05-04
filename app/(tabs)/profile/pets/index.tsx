@@ -39,7 +39,7 @@ const petList = [
   {
     id: 4,
     name: "Bear",
-    type: "Bear",
+    type: "Bearys",
     breed: "Dutch",
     age: 1,
     ownerName: "Lisa White",
