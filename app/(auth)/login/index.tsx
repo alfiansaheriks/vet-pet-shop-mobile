@@ -1,9 +1,34 @@
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { images } from "@/constants/images";
 import { router } from "expo-router";
+import { useAuth } from "@/context/AuthContext";
+import { login as loginAPI } from "@/lib/api/auth";
 
 const Login = () => {
+  const auth = useAuth();
+  if (!auth) {
+    throw new Error("Auth context is not available");
+  }
+
+  const { login } = auth;
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const response = await loginAPI({email: email, password: password});
+      await login(response.access_token, response.refresh_token);
+      router.replace("/(tabs)");
+      console.log("Login successful: ", response);
+    } catch (error) {
+      console.log("Payload: ", {email: email, password: password});
+      console.log("API URL: ", process.env.EXPO_PUBLIC_API_URL);
+      console.error("Login failed: ", error);
+    }
+  }
+
   const handleRegister = () => {
     try {
       router.push("/(auth)/register");
@@ -24,12 +49,25 @@ const Login = () => {
       <Image source={images.dog3dlogin} className="size-96" />
 
       <TextInput
-        placeholder="Phone Number"
+        placeholder="Email"
         className="w-full bg-white text-primary rounded-full px-4 py-5 mb-4 font-bold"
         placeholderTextColor="#BF9264"
+        keyboardType="email-address"
+        inputMode="email"
+        value={email}
+        onChangeText={setEmail}
       />
 
-      <TouchableOpacity onPress={() => router.push('/(tabs)')} className="bg-primary rounded-full px-4 py-5 mb-4 w-full">
+      <TextInput
+        placeholder="Password"
+        className="w-full bg-white text-primary rounded-full px-4 py-5 mb-4 font-bold"
+        placeholderTextColor="#BF9264"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+        />
+
+      <TouchableOpacity onPress={handleLogin} className="bg-primary rounded-full px-4 py-5 mb-4 w-full">
         <Text className="text-white font-bold text-center">Login</Text>
       </TouchableOpacity>
 

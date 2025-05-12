@@ -119,7 +119,7 @@ const Index = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white py-base">
+    <SafeAreaView className="flex-1 bg-white">
       <LinearGradient
         colors={["#BF9264", "#ffffff"]}
         start={{ x: 0, y: 0 }}
@@ -136,7 +136,7 @@ const Index = () => {
         }}
       />
 
-      <View className="items-center">
+      <View className="items-center py-base">
         <TouchableOpacity
           className="flex-row items-center justify-center mb-4"
           onPress={() => setShowPetModal(true)}

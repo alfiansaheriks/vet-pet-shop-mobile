@@ -39,7 +39,7 @@ const Index = () => {
     router.push(route);
   };
   return (
-    <SafeAreaView className="flex-1 bg-primary py-base">
+    <SafeAreaView className="flex-1 bg-primary">
       <LinearGradient
         colors={["#BF9264", "#ffffff"]}
         start={{ x: 0, y: 0 }}
@@ -55,7 +55,7 @@ const Index = () => {
           borderBottomRightRadius: 24,
         }}
       />
-      <View className="items-center mb-6">
+      <View className="items-center mb-6 py-base">
         <View className="flex-row items-center gap-x-2">
           <MaterialIcons name="location-pin" size={24} color="#000" />
           <Text
@@ -79,12 +79,12 @@ const Index = () => {
           />
         </View>
       </View>
-      <View className="flex-1 items-center bg-white rounded-3xl shadow-sm">
+      <View className="flex-1 bg-white rounded-t-3xl shadow-sm">
         <FlatList
           data={historyAppointments}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <View className="bg-white py-base px-base rounded-lg border-b border-gray-200">
+            <View className="bg-white py-base px-base rounded-3xl border-b border-gray-200">
               <Text
                 className="text-lg font-bold"
                 style={{ fontFamily: "Lato-Bold" }}
@@ -116,7 +116,7 @@ const Index = () => {
           )}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          style={{ width: "100%" }}
+          style={{ width: "100%", height: "100%" }}
           contentContainerStyle={{
             paddingBottom: 32,
           }}

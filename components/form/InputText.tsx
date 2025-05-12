@@ -1,7 +1,7 @@
 import { View, Text, TextInput } from "react-native";
 import React from "react";
 
-const InputText = ({ label, placeholder, type }: InputTextProps) => {
+const InputText = ({ label, placeholder, type, value, onChange }: InputTextProps) => {
   return (
     <>
       <View className="bg-white rounded-lg">
@@ -12,6 +12,8 @@ const InputText = ({ label, placeholder, type }: InputTextProps) => {
           inputMode={type}
           className="flex-1 text-sm text-black border border-gray-200 p-3 rounded-lg"
           style={{ fontFamily: "Lato-Bold" }}
+          value={value}
+          onChangeText={onChange}
         />
         {/* <Ionicons name="search" size={24} color="#BF9264" /> */}
       </View>

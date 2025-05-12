@@ -1,13 +1,28 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { router } from "expo-router";
+import { register as registerAPI } from "@/lib/api/auth";
 
 const Register = () => {
-  const [isSentOtp, setIsSentOtp] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [waPhoneNumber, setWaPhoneNumber] = useState("");
 
-  const handleSendOtp = () => {
-    setIsSentOtp(true);
-  };
+
+  const handleRegister = async () => {
+    try {
+      const response = await registerAPI({Name: fullName, Email: email, Password: password, Role: "customer", Phone_Number: phoneNumber, Wa_Phone_Number: waPhoneNumber});
+      console.log("Register successful: ", response);
+      router.replace("/(auth)/login");
+    } catch (error:any) {
+      console.error("Payload: ", {fullName: fullName, email: email, password: password, role: "customer", phoneNumber: phoneNumber, waPhoneNumber: waPhoneNumber});
+      console.error("Registration failed: ", error.response.data);
+      console.log("Error ")
+    }
+
+  }
 
   const handleAlreadyHaveAccount = () => {
     try {
@@ -29,46 +44,55 @@ const Register = () => {
         placeholder="Full Name"
         className="w-full bg-white text-primary rounded-full px-4 py-4 mb-2 font-bold"
         placeholderTextColor="#BF9264"
+        value={fullName}
+        onChangeText={setFullName}
       />
 
       <TextInput
         placeholder="Phone Number"
-        className="w-full bg-white text-primary rounded-full px-4 py-4 font-bold mb-2"
+        className="w-full bg-white text-primary rounded-full px-4 py-4 mb-2 font-bold"
         placeholderTextColor="#BF9264"
+        keyboardType="numeric"
+        inputMode="numeric"
+        value={phoneNumber}
+        onChangeText={setPhoneNumber}
+      />
+
+      <TextInput
+        placeholder="WhatsApp Number"
+        className="w-full bg-white text-primary rounded-full px-4 py-4 mb-2 font-bold"
+        placeholderTextColor="#BF9264"
+        keyboardType="numeric"
+        inputMode="numeric"
+        value={waPhoneNumber}
+        onChangeText={setWaPhoneNumber}
       />
 
       <TextInput
         placeholder="Email"
+        keyboardType="email-address"
+        inputMode="email"
         className="w-full bg-white text-primary rounded-full px-4 py-4 font-bold mb-2"
         placeholderTextColor="#BF9264"
+        value={email}
+        onChangeText={setEmail}
       />
 
-      <View className="flex-row rounded-full px-14 gap-x-1">
-        <TextInput
-          placeholder="Verification Code"
-          className="w-full bg-white text-primary rounded-full px-4 py-4 font-bold"
-          placeholderTextColor="#BF9264"
-        />
-        {isSentOtp ? (
-          <TouchableOpacity className="bg-primary rounded-full px-4 py-4">
-            <Text className="text-white font-bold text-center">Verify Otp</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            className="bg-primary rounded-full px-4 py-4"
-            onPress={handleSendOtp}
-          >
-            <Text className="text-white font-bold text-center">Send OTP</Text>
-          </TouchableOpacity>
-        )}
-      </View>
+      <TextInput
+        placeholder="Password"
+        className="w-full bg-white text-primary rounded-full px-4 py-4 font-bold mb-2"
+        placeholderTextColor="#BF9264"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
 
-      <TouchableOpacity className="bg-primary rounded-full px-4 py-4 w-full mt-2">
+      <TouchableOpacity onPress={handleRegister} className="bg-primary rounded-full px-4 py-4 w-full mt-2">
         <Text className="text-white font-bold text-center">Register</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity className="bg-primary rounded-full px-4 py-4 w-full mt-2" onPress={handleAlreadyHaveAccount}>
-        <Text className="text-white font-bold text-center">
+      <TouchableOpacity className="bg-white rounded-full px-4 py-4 w-full mt-2" onPress={handleAlreadyHaveAccount}>
+        <Text className="text-primary font-bold text-center">
           Already have account
         </Text>
       </TouchableOpacity>

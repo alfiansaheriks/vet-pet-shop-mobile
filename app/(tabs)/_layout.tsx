@@ -1,8 +1,9 @@
 import { View, Text, ImageBackground, Image, Pressable } from "react-native";
 import React from "react";
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import { icons } from "@/constants/icons";
 import { MaterialIcons, FontAwesome5, Ionicons } from "@expo/vector-icons";
+import { useAuth } from "@/context/AuthContext";
 
 const TabIcon = ({ focused, icon, iconFilled }: any) => {
   if (focused) {
@@ -33,9 +34,22 @@ const TabIcon = ({ focused, icon, iconFilled }: any) => {
 };
 
 const _Layout = () => {
+  const auth = useAuth();
+  if (!auth) {
+    throw new Error("Auth context is not available");
+  }
+
+  const {authToken, refreshToken, loading} = auth;
+
+  if (loading) return null;
+
+  if (!authToken && !refreshToken) {
+    return <Redirect href="/(auth)/login" />;
+  }
   return (
     <Tabs
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
         tabBarItemStyle: {
           width: "100%",
@@ -51,7 +65,7 @@ const _Layout = () => {
           paddingLeft: 50,
           paddingRight: 50,
           height: 100,
-          position: "absolute",
+          // position: "absolute",
           overflow: "hidden",
         },
       }}

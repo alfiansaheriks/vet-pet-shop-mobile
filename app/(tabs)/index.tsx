@@ -1,11 +1,14 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { images } from "@/constants/images";
 import { icons } from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
 import { LinearGradient } from "expo-linear-gradient";
 import AnimalCard from "@/components/AnimalCard";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { User } from "@/lib/api/profile/type";
+import { useAuth } from "@/context/AuthContext";
+import { getDataUser } from "@/lib/api/profile";
 
 const Features = ({ icon, title }: HomeFeatureProps) => {
   return (
@@ -34,7 +37,7 @@ const TabsIndex = () => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             paddingBottom: 100,
-            paddingTop: 55,
+            paddingTop: 50,
           }}
         >
           <View className="px-base">
