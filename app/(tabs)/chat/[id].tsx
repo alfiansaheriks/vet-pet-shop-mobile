@@ -42,10 +42,10 @@ export default function ChatPage() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={['top', 'bottom']}>
+    <SafeAreaView className="flex-1 bg-white">
       <KeyboardAvoidingView
         className="flex-1"
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
       >
         <View className="flex-1">
@@ -80,7 +80,7 @@ export default function ChatPage() {
           />
         </View>
 
-        <View className="flex-row items-center border-t border-gray-300 bg-white p-2 pb-24">
+        <View className="flex-row items-center border-t border-gray-300 bg-white p-2">
           <TextInput
             placeholder="Type your message..."
             className="flex-1 bg-gray-100 rounded-full px-4 py-3 mr-2 text-black"

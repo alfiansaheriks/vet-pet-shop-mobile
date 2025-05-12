@@ -9,7 +9,7 @@ import TextAreaInput from "@/components/form/TextAreaInput";
 import RadioInput from "@/components/form/RadioInput";
 import BackButton from "@/components/BackButton";
 
-const Booking = () => {
+export default function Booking() {
   const { id } = useLocalSearchParams();
 
   const [date, setDate] = useState(new Date());
@@ -95,5 +95,3 @@ const Booking = () => {
     </SafeAreaView>
   );
 };
-
-export default Booking;

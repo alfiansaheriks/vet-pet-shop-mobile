@@ -56,6 +56,8 @@ type InputTextProps = {
     label: string;
     placeholder: string;
     type?: 'text' | 'email' | 'numeric' | 'url';
+    value?: string;
+    onChange?: (text: string) => void;
 }
 
 type PasswordInputProps = {

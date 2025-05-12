@@ -34,18 +34,28 @@ const Index = () => {
           className="text-black text-xl mt-4"
           style={{
             fontFamily: "Lato-Bold",
-            fontSize: 24,
+            fontSize: 20,
+            marginTop: 30,
           }}
         >
           Products
         </Text>
-        <View className="absolute top-0 right-0 mr-4 mt-4">
+        <Text
+          className="text-black text-base mt-2"
+          style={{
+            fontFamily: "Lato-Regular",
+            fontSize: 14,
+          }}
+        >
+          Find the best products for your pet
+        </Text>
+        <View className="absolute top-0 right-0 mr-4 mt-12">
           <TouchableOpacity onPress={() => router.push("/products/cart")}>
             <MaterialIcons name="add-shopping-cart" size={30} color="#BF9264" />
           </TouchableOpacity>
         </View>
 
-        <View className="flex-col mt-10 gap-4">
+        <View className="flex-col mt-4 gap-4">
           <View className="flex-row gap-8 w-full justify-center items-center mt-4">
             {/* TODO: Search Icons Library for animals */}
             <AnimalType

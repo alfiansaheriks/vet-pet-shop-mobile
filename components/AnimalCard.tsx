@@ -1,30 +1,28 @@
 import { View, Text, Image, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { images } from "@/constants/images";
 import { icons } from "@/constants/icons";
-
-const animalData = [
-  {
-    id: 1,
-    name: "Golden Retriever",
-    location: "Jakarta, ID",
-    image: images.dog3d,
-  },
-  {
-    id: 2,
-    name: "Persian Cat",
-    location: "Bandung, ID",
-    image: images.cat3d,
-  },
-  {
-    id: 3,
-    name: "Rabbit",
-    location: "Yogyakarta, ID",
-    image: images.cat3d,
-  },
-];
+import { useGlobalStore, usePetStore } from "@/stores";
 
 const AnimalCard = () => {
+  const userId = useGlobalStore((state) => state.userId);
+  const token = useGlobalStore((state) => state.authToken);
+  const pet = usePetStore((state) => state.pet);
+
+  useEffect(() => {
+    const fetchPets = async () => {
+      if (userId && token) {
+        try {
+          await usePetStore.getState().fetchPets(userId.toString(), token);
+        } catch (error) {
+          console.error("Failed to fetch pet data:", error);
+        }
+      }
+    };
+
+    fetchPets();
+  }, [userId, token]);
+
   return (
     <ScrollView
       horizontal
@@ -36,11 +34,11 @@ const AnimalCard = () => {
         paddingHorizontal: 0,
       }}
     >
-      {animalData.map((animal) => (
+      {pet.map((animal) => (
         <View key={animal.id} className="relative w-[250px] mr-4">
           <View className="bg-[#BF9264] rounded-2xl justify-center items-center h-[250px]">
             <Image
-              source={animal.image}
+              source={images.dog3d}
               className="size-60"
               resizeMode="contain"
             />
@@ -60,7 +58,7 @@ const AnimalCard = () => {
                 style={{ tintColor: "#BF9264" }}
               />
               <Text className="text-gray-300 font-semibold text-sm mt-1" style={{ fontFamily: "Lato" }}>
-                {animal.location}
+                Yogyakarta, ID
               </Text>
             </View>
           </View>

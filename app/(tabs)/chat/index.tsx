@@ -30,15 +30,15 @@ const dummyChatList = [
   },
 ];
 
-const Index = () => {
+export default function ChatPage() {
   const router = useRouter();
   const handleChatPress = (id: number) => {
-    router.push(`/chat/${id}`);
+    router.push(`/(tabs)/chat/${id}`);
   };
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={["top", "bottom"]}>
+    <SafeAreaView className="flex-1 bg-white">
       <View className="items-center justify-center bg-white p-4 border-b border-gray-300">
-        <Text className="text-sm font-semibold mt-2">Chat</Text>
+        <Text className="text-sm font-semibold mt-2">Your Chats</Text>
       </View>
 
       <FlatList
@@ -90,5 +90,3 @@ const Index = () => {
     </SafeAreaView>
   );
 };
-
-export default Index;
